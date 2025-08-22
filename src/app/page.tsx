@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { Search, Menu, Star, ChevronRight, Gamepad2, Headphones, Monitor } from 'lucide-react';
-
+import { Search, ShoppingCart, User, Menu, Star, ChevronRight, Gamepad2, Headphones, Monitor } from 'lucide-react';
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState('all');
   
@@ -27,6 +26,7 @@ export default function Home() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
+              <Gamepad2 className="h-8 w-8 text-gray-700" />
               <span className="ml-2 text-xl font-bold text-gray-800">XLR8</span>
             </div>
             
@@ -44,6 +44,13 @@ export default function Home() {
             
             {/* Navigation */}
             <div className="flex items-center space-x-4">
+              <button className="p-2 text-gray-600 hover:text-gray-800">
+                <User className="h-5 w-5" />
+              </button>
+              <button className="p-2 text-gray-600 hover:text-gray-800 relative">
+                <ShoppingCart className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 bg-gray-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+              </button>
               <button className="md:hidden p-2 text-gray-600 hover:text-gray-800">
                 <Menu className="h-5 w-5" />
               </button>
@@ -157,6 +164,32 @@ export default function Home() {
                 <option>Release Date</option>
               </select>
             </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {Array.from({ length: 15 }).map((_, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="bg-gray-300 h-32 flex items-center justify-center">
+                  <span className="text-gray-600 text-sm">[Game Cover]</span>
+                </div>
+                <div className="p-3">
+                  <h3 className="font-medium text-sm mb-1 truncate">Game Title {index + 1}</h3>
+                  <div className="flex items-center mb-2">
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-3 w-3 text-gray-400 fill-current" />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-gray-800">${(Math.random() * 60 + 10).toFixed(2)}</span>
+                    <button className="text-gray-600 hover:text-gray-800 text-xs">
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
