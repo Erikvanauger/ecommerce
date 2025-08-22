@@ -27,7 +27,7 @@ export default function Home() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <span className="ml-2 text-xl font-bold text-gray-800">GameShop</span>
+              <span className="ml-2 text-xl font-bold text-gray-800">XLR8</span>
             </div>
             
             {/* Search Bar */}
@@ -184,7 +184,7 @@ export default function Home() {
             <div>
               <div className="flex items-center mb-4">
                 <Gamepad2 className="h-6 w-6 text-gray-400" />
-                <span className="ml-2 text-lg font-bold">GameShop</span>
+                <span className="ml-2 text-lg font-bold">XLR8</span>
               </div>
               <p className="text-gray-400 text-sm">
                 Your ultimate destination for gaming.
@@ -219,7 +219,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2025 GameShop. All rights reserved.</p>
+            <p>&copy; 2025 XLR8. All rights reserved.</p>
           </div>
         </div>
       </footer>
