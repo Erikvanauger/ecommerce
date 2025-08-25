@@ -1,258 +1,191 @@
-'use client'
-import React, { useState } from 'react';
-import { Search, ShoppingCart, User, Menu, Star, ChevronRight, Gamepad2, Headphones, Monitor } from 'lucide-react';
-export default function Home() {
-  const [activeCategory, setActiveCategory] = useState('all');
+"use client"
+import React, { useState, useEffect } from 'react';
+import { Search, ShoppingCart, User, Bell, Zap, Trophy, Users, Gamepad, ArrowRight, Play} from 'lucide-react';
+
+export default function FuturisticGamingStore() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   
-  const categories = [
-    { id: 'all', name: 'All Games', icon: Gamepad2 },
-    { id: 'pc', name: 'PC Games', icon: Monitor },
-    { id: 'console', name: 'Console', icon: Gamepad2 },
-    { id: 'accessories', name: 'Accessories', icon: Headphones },
-
+  const heroSlides = [
+    { title: "CLAIR OBSCURE EXPEDITION 33", subtitle: "For those who come after", color: "from-cyan-500 to-purple-600" },
+    { title: "MODERN WARFARE", subtitle: "Bang Bang", color: "from-orange-500 to-red-600" },
+    { title: "RED DEAD REDEMPTION 2", subtitle: "Arthur, I have a plan", color: "from-green-400 to-blue-600" }
   ];
 
-  const featuredGames = [
-    { title: 'Cyberpunk 2077', price: '$00.00', originalPrice: '$00.00', rating: 1.2 },
-    { title: 'The Witcher 3', price: '$00.00', originalPrice: '$00.00', rating: 2.3 },
-    { title: 'Red Dead Redemption 2', price: '$00.00', originalPrice: '$00.00', rating: 3.4 }
-  ];
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      {/*Header */}
+      <header className="fixed top-4 left-4 right-4 z-50 bg-black/20 backdrop-blur-xl border border-white/10 rounded-2xl">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center">
-              <Gamepad2 className="h-8 w-8 text-gray-700" />
-              <span className="ml-2 text-xl font-bold text-gray-800">XLR8</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center">
+                <Gamepad className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-white">XLR8</h1>
+                <p className="text-xs text-gray-400">GAMING</p>
+              </div>
             </div>
             
-            {/* Search Bar */}
-            <div className="flex-1 max-w-lg mx-8">
-              <div className="relative">
+            {/* Center Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              {['Store', 'Library', 'Community', 'Esports', 'News'].map((item) => (
+                <button key={item} className="text-gray-300 hover:text-white transition-all hover:scale-105 font-medium">
+                  {item}
+                </button>
+              ))}
+            </nav>
+            
+            {/* Nav */}
+            <div className="flex items-center space-x-4">
+              <div className="relative hidden md:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-400 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                  className="w-64 pl-10 pr-4 py-2 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/50 backdrop-blur"
                 />
               </div>
-            </div>
-            
-            {/* Navigation */}
-            <div className="flex items-center space-x-4">
-              <button className="p-2 text-gray-600 hover:text-gray-800">
+              <button className="p-2 text-gray-300 hover:text-white transition-colors">
+                <Bell className="h-5 w-5" />
+              </button>
+              <button className="p-2 text-gray-300 hover:text-white transition-colors">
                 <User className="h-5 w-5" />
               </button>
-              <button className="p-2 text-gray-600 hover:text-gray-800 relative">
+              <button className="relative p-2 text-gray-300 hover:text-white transition-colors">
                 <ShoppingCart className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 bg-gray-700 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-              </button>
-              <button className="md:hidden p-2 text-gray-600 hover:text-gray-800">
-                <Menu className="h-5 w-5" />
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-xs font-bold text-white">2</span>
+                </div>
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gray-300 text-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Some fancy quote
-              </h1>
-              <p className="text-lg mb-6 text-gray-700">
-                Even fancier sub-quote
-              </p>
-              <div className="flex space-x-4">
-                <button className="bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
-                  Shop Now
-                </button>
-                <button className="border border-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
-                  View Deals
-                </button>
-              </div>
-            </div>
-            <div className="bg-gray-400 h-64 rounded-lg flex items-center justify-center">
-              <span className="text-gray-600 text-lg">[Hero]</span>
-            </div>
+      {/* Hero */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <div className={`absolute inset-0 bg-gradient-to-r ${heroSlides[currentSlide].color} opacity-30`} />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
+        </div>
+        
+        {/*Particles */}
+        <div className="absolute inset-0">
+          {Array.from({ length: 50 }).map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${2 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 text-center px-4">
+          <h1 className="text-8xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-400 to-purple-400 mb-4 animate-pulse">
+            {heroSlides[currentSlide].title}
+          </h1>
+          <p className="text-2xl md:text-3xl text-gray-300 mb-8 font-light">
+            {heroSlides[currentSlide].subtitle}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl text-white font-bold text-lg hover:scale-105 transition-all duration-300 shadow-2xl">
+              <span className="flex items-center">
+                EXPLORE NOW 
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </button>
+            <button className="px-8 py-4 border-2 border-white/30 rounded-2xl text-white font-bold text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur">
+              <span className="flex items-center">
+                <Play className="mr-2 h-5 w-5" /> WATCH TRAILER
+              </span>
+            </button>
           </div>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentSlide ? 'bg-white scale-125' : 'bg-white/30'
+              }`}
+            />
+          ))}
         </div>
       </section>
 
-      {/* Category Navigation */}
-      <nav className="bg-white shadow-sm border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8 overflow-x-auto py-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${
-                  activeCategory === category.id
-                    ? 'bg-gray-300 text-gray-900'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
-                }`}
-              >
-                <category.icon className="h-4 w-4" />
-                <span>{category.name}</span>
-              </button>
+      {/* Stats Bar */}
+      <div className="relative -mt-20 z-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: Users, value: '2.5M+', label: 'Active Players' },
+              { icon: Gamepad, value: '15K+', label: 'Games Available' },
+              { icon: Trophy, value: '500K+', label: 'Tournaments' },
+              { icon: Zap, value: '99.9%', label: 'Uptime' }
+            ].map((stat, index) => (
+              <div key={index} className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:border-cyan-400/50 transition-all">
+                <stat.icon className="h-8 w-8 text-cyan-400 mx-auto mb-3" />
+                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </div>
             ))}
           </div>
         </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Featured Deals */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">Featured Deals</h2>
-            <button className="flex items-center text-gray-600 hover:text-gray-800">
-              View All <ChevronRight className="ml-1 h-4 w-4" />
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredGames.map((game, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="bg-gray-300 h-48 flex items-center justify-center">
-                  <span className="text-gray-600">Image</span>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-lg mb-2">{game.title}</h3>
-                  <div className="flex items-center mb-2">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${i < Math.floor(game.rating) ? 'text-gray-700 fill-current' : 'text-gray-300'}`}
-                        />
-                      ))}
-                      <span className="ml-2 text-sm text-gray-600">({game.rating})</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-xl font-bold text-gray-800">{game.price}</span>
-                      <span className="ml-2 text-sm text-gray-500 line-through">{game.originalPrice}</span>
-                    </div>
-                    <button className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Products */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">Popular Games</h2>
-            <div className="flex items-center space-x-4">
-              <select className="border border-gray-400 rounded-lg px-3 py-2 text-sm">
-                <option>Sort by: Popular</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Rating</option>
-                <option>Release Date</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {Array.from({ length: 15 }).map((_, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="bg-gray-300 h-32 flex items-center justify-center">
-                  <span className="text-gray-600 text-sm">[Game Cover]</span>
-                </div>
-                <div className="p-3">
-                  <h3 className="font-medium text-sm mb-1 truncate">Game Title {index + 1}</h3>
-                  <div className="flex items-center mb-2">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-3 w-3 text-gray-400 fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-gray-800">${(Math.random() * 60 + 10).toFixed(2)}</span>
-                    <button className="text-gray-600 hover:text-gray-800 text-xs">
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Newsletter Signup */}
-        <section className="bg-gray-800 text-white rounded-lg p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
-          <p className="mb-6 text-gray-300">Get the latest news and deals.</p>
-          <div className="flex max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-2 rounded-l-lg text-gray-900"
-            />
-            <button className="bg-gray-600 px-6 py-2 rounded-r-lg hover:bg-gray-700 transition-colors">
-              Subscribe
-            </button>
-          </div>
-        </section>
-      </main>
+      </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer className="bg-black/50 backdrop-blur-xl border-t border-white/10 py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <div className="flex items-center mb-4">
-                <Gamepad2 className="h-6 w-6 text-gray-400" />
-                <span className="ml-2 text-lg font-bold">XLR8</span>
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center">
+                  <Gamepad className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-white">XLR8</h1>
+                  <p className="text-xs text-gray-400">GAMING</p>
+                </div>
               </div>
-              <p className="text-gray-400 text-sm">
-                Your ultimate destination for gaming.
-              </p>
             </div>
-            <div>
-              <h3 className="font-semibold mb-4">Shop</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Account</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-                <li><a href="#">something</a></li>
-              </ul>
-            </div>
+            
+            {[
+              { title: 'Platform', items: ['something', 'something', 'something', 'something'] },
+              { title: 'Community', items: ['something', 'something', 'something', 'something'] },
+              { title: 'Support', items: ['something', 'something', 'something', 'something'] }
+            ].map((column, index) => (
+              <div key={index}>
+                <h3 className="text-white font-bold mb-4">{column.title}</h3>
+                <ul className="space-y-2">
+                  {column.items.map((item, i) => (
+                    <li key={i}>
+                      <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">{item}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2025 XLR8. All rights reserved.</p>
+          
+          <div className="border-t border-white/10 pt-8 text-center">
+            <p className="text-gray-400 text-sm">&copy; 2025 XLR8. All rights reserved.</p>
           </div>
         </div>
       </footer>
