@@ -6,7 +6,7 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <header className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 bg-black/20 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl">
+    <header className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 bg-black/20 backdrop-blur-xl border border-white/10 rounded-lg">
       <div className="px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

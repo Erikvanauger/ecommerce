@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { SUSE } from "next/font/google";
+import { SUSE, Lexend_Deca } from "next/font/google";
 
 import "./globals.css";
 
@@ -19,6 +19,11 @@ const SuseSans = SUSE({
   subsets: ["latin"],
 });
 
+const LexendNeu = Lexend_Deca({
+  variable: "--font-Lexend",
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${SuseSans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${SuseSans.variable} ${LexendNeu.variable} antialiased`}
       >
         {children}
       </body>
