@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 bg-black/20 backdrop-blur-xl border border-white/10 rounded-lg">
       <div className="px-3 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between" style={{fontFamily: "var(--font-SUSE)"}}>
           {/* Logo */}
           <div className="flex items-center space-x-2 sm:space-x-3">
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center">
@@ -21,7 +21,7 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Nav */}
-          <nav className="hidden xl:flex items-center space-x-8" style={{fontFamily: "var(--font-SUSE)"}}>
+          <nav className="hidden lg:flex items-center lg:space-x-8 xl:space-x-20 text-lg" >
             {['Store', 'Library', 'Community', 'Esports', 'News'].map((item) => (
               <button key={item} className="text-gray-300 hover:cursor-pointer hover:text-white transition-all hover:scale-105 font-medium">
                 {item}
