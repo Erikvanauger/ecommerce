@@ -21,7 +21,7 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center lg:space-x-8 xl:space-x-20 text-lg" >
+          <nav className="hidden lg:flex items-center lg:space-x-10 xl:space-x-20 text-lg" >
             {['Store', 'Library', 'Community', 'Esports', 'News'].map((item) => (
               <button key={item} className="text-gray-300 hover:cursor-pointer hover:text-white transition-all hover:scale-105 font-medium">
                 {item}

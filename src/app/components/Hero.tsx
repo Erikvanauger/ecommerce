@@ -8,6 +8,9 @@ export default function Hero() {
     { title: "MODERN WARFARE", subtitle: "Bang Bang", color: "from-red-900/60 to-orange-900/60" },
     { title: "RED DEAD REDEMPTION 2", subtitle: "Arthur, I have a plan", color: "from-amber-900/50 to-red-900/50" }
   ];
+  const [particles, setParticles] = useState<
+    { left: string; top: string; animationDelay: string; animationDuration: string }[]
+  >([]);
 
   useEffect(() => {
       const timer = setInterval(() => {
@@ -15,6 +18,16 @@ export default function Hero() {
       }, 4000);
       return () => clearInterval(timer);
     }, []);
+
+    useEffect(() => {
+    const newParticles = Array.from({ length: 30 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 2}s`,
+      animationDuration: `${2 + Math.random() * 3}s`,
+    }));
+    setParticles(newParticles);
+  }, []);
   
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24">
@@ -26,18 +39,13 @@ export default function Hero() {
         {/*Particles */}
         <div className="absolute inset-0 "></div>
         <div className="absolute inset-0 ">
-          {Array.from({ length: 30 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-blue-300/30 rounded-full animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            />
-          ))}
+          {particles.map((p, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-300/30 rounded-full animate-pulse"
+            style={p}
+          />
+        ))}
         </div>
 
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
