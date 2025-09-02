@@ -20,10 +20,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-2 sm:top-4 left-2 sm:left-4 right-2 sm:right-4 z-50 bg-black/20 backdrop-blur-xl border border-white/10 rounded-lg">
       <div className="px-3 sm:px-6 py-3 sm:py-4">
-        <div
-          className="flex items-center justify-between"
-          style={{ fontFamily: "var(--font-SUSE)" }}
-        >
+        <div className="flex items-center justify-between font-SUSE">
           {/* Logo */}
           <div
             className="flex items-center space-x-2 sm:space-x-3 cursor-pointer"
@@ -130,20 +127,16 @@ export default function Navbar() {
         {/* Mobile/Tablet Menu */}
         {isMenuOpen && (
           <div className="mt-4 xl:hidden border-t border-white/10 pt-4">
-            <nav
-              className="flex flex-col space-y-4"
-              style={{ fontFamily: "var(--font-SUSE)" }}
-            >
-              {["Store", "Library", "Community", "Esports", "News"].map(
-                (item) => (
-                  <button
-                    key={item}
-                    className="text-gray-300 hover:text-white transition-colors font-medium text-left py-2"
-                  >
-                    {item}
-                  </button>
-                )
-              )}
+            <nav className="flex flex-col space-y-4 font-SUSE">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => router.push(item.href)}
+                  className="text-gray-300 hover:text-white transition-colors font-medium text-left py-2"
+                >
+                  {item.name}
+                </button>
+              ))}
               <div className="flex items-center space-x-4 pt-4 border-t border-white/10 lg:hidden">
                 <button className="p-2 text-gray-300 hover:text-white transition-colors">
                   <Bell className="h-5 w-5" />
