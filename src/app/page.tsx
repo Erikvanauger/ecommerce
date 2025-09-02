@@ -33,8 +33,33 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       <TrendingGames/>
+      <section className='py-20 px-4'>
+        <div className="max-w-7xl mx-auto">
+          <h2 className="lg:text-5xl text-2xl sm:text-3xl font-semibold text-white text-center mb-16 font-Lexend">Categories</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: 'Action', color: 'from-purple-500 to-gray-700', icon: '⚔️' },
+              { name: 'RPG', color: 'from-purple-500 to-gray-700', icon: '🐉' },
+              { name: 'Sci-Fi', color: 'from-purple-500 to-gray-700', icon: '🚀' },
+              { name: 'Racing', color: 'from-purple-500 to-gray-700', icon: '🏎️' },
+              { name: 'Simulation', color: 'from-purple-500 to-gray-700', icon: '🧠' },
+              { name: 'Horror', color: 'from-purple-500 to-gray-700', icon: '👻' }
+            ].map((category, index) => (
+              <div
+                key={index}
+                className={`relative h-32 bg-gradient-to-r ${category.color} rounded-3xl overflow-hidden cursor-pointer group hover:scale-105 transition-all duration-300`}
+              >
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                <div className="relative h-full flex flex-col items-center justify-center text-white">
+                  <div className="text-3xl mb-2">{category.icon}</div>
+                  <div className="font-bold text-lg text-center">{category.name}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <Footer/>
     </div>
   );
