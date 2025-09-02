@@ -103,7 +103,7 @@ export default function Store() {
                       <span className="text-xl font-bold text-gray-800">{game.price}</span>
                       <span className="ml-2 text-sm text-gray-500 line-through">{game.originalPrice}</span>
                     </div>
-                    <button className="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+                    <button className="bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors">
                       Add to Cart
                     </button>
                   </div>
@@ -145,7 +145,7 @@ export default function Store() {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-gray-800">${(Math.random() * 60 + 10).toFixed(2)}</span>
-                    <button className="text-gray-600 hover:text-gray-800 text-xs">
+                    <button className="text-gray-600 hover:text-gray-800 text-xs bg-gradient-to-r from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 rounded-lg px-4 py-1">
                       Add to Cart
                     </button>
                   </div>

@@ -1,8 +1,10 @@
 import { ArrowRight, Flame, Heart, Play, Star, Users } from 'lucide-react'
+import { useRouter } from 'next/navigation';
 import React, {useState} from 'react'
 
 export default function TrendingGames() {
     const [hoveredGame, setHoveredGame] = useState(null);
+    const router = useRouter();
       const trendingGames = [
         { id: 1, title: "Stellar Odyssey", genre: "Space RPG", price: 49.99, discount: 20, players: "12.5K", rating: 9.2, isNew: true },
         { id: 2, title: "Neon Streets", genre: "Cyberpunk Action", price: 39.99, discount: 0, players: "8.2K", rating: 8.8, isHot: true },
@@ -19,7 +21,8 @@ export default function TrendingGames() {
               <h2 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-white mb-2" >Trending</h2>
               <p className="text-sm sm:text-base text-gray-400">The hottest games on the market right now!</p>
             </div>
-            <button className="flex items-center text-yellow-400 hover:text-yellow-300 font-semibold text-sm sm:text-base self-start sm:self-auto transition-colors">
+            <button className="flex items-center text-yellow-400 hover:text-yellow-300 font-semibold text-sm sm:text-base self-start sm:self-auto transition-colors"
+            onClick={() => router.push("/store")}>
               View All <ArrowRight className="ml-2 h-4 w-4" />
             </button>
           </div>
